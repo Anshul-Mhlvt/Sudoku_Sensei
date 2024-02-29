@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Sensei</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/util.css">
+    <link rel="icon" href="Images/icon.png" type="image/png">
 </head>
 <body>
-    <h1>Sudoku Sensei</h1>
+    <div class="heading m-auto">
+        <h1 class="text-center">Sudoku Sensei</h1>
+    </div>
+    <div id="background-img"> 
+        <img src="Images/background image.png" alt="">
+   </div>
     <div class="container">
-        <div id="board-container"></div>
-        <div class="panel">
-            <div id="options-container"></div>
-            <div class="buttons">
-                <button class="begin">Begin</button>
-                <button class="end">End</button>
+    <div class="alert-box font-wt-bold br-radius display-none"></div>
+    <div class="container flex align-center justify-center">
+        <div id="board-container" class="flex wrap pointer"></div>
+        <div class="panel flex justify-center align-center">
+            <div id="options-container" class="flex wrap justify-start pointer"></div>
+            <div class="buttons-container flex text-center">
+                <button class="start font-wt-bold br-radius pointer">Start</button>
+                <button class="stop font-wt-bold br-radius pointer">Reset</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="Javascript/script.js" defer></script>
+    <script src="Javascript/verify.js" defer></script>
 </body>
 </html>
