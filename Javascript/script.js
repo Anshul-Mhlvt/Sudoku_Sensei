@@ -5,16 +5,15 @@ const startButton = document.querySelector('.start');
 const stopButton = document.querySelector('.stop');
 
 const exampleBoard = [
-    ["5","6",".","8","4","7",".",".","."],
-    ["3",".","9",".",".",".","6",".","."],
-    [".",".","8",".",".",".",".",".","."],
-    [".","1",".",".","8",".",".","4","."],
-    ["7","9",".","6",".","2",".","1","8"],
-    [".","5",".",".","3",".",".","9","."],
-    [".",".",".",".",".",".","2",".","."],
-    [".",".","6",".",".",".","8",".","7"],
-    [".",".",".","3","1","6",".","5","9"]
-    
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".",".","."]
 ];
 
 const speed = 100;
@@ -89,9 +88,24 @@ const solve = async () => {
     return true;
 }
 const start = async () => {
-    const result = await solve();
-    console.log(result);
+    const isPossible = validBoard(exampleBoard);
+    if(isPossible) {
+        alertBox.classList.add('display-none');
+        optionsContainer.classList.add('display-none');
+        
+        const result = await solve();
+
+        alertBox.classList.remove('display-none', 'alert-failure');
+        alertBox.classList.add('alert-success');
+        alertBox.innerText = "Solved";
+    }
+    else {
+        alertBox.classList.remove('display-none', 'alert-success');
+        alertBox.classList.add('alert-failure');
+        alertBox.innerText = "Unsolvable";
+    }
 }
+
 const stop = () => {
     window.location.reload();
 }
