@@ -22,4 +22,42 @@
 - If given Sudoku state is valid, then the algorithm will start doing it's job by running the backtracking algorithm.
 - Once the board is solved, the algorithm will be completed and a **solved message** will be shown.
 
+## PseudoCode (Backtracking Algorithm)
 
+```javascript
+const valid = async (row, col, c) => {
+    for(let i = 0; i < 9; i++) {
+        if(parseInt(exampleBoard[i][col]) === c) return false;
+        if(parseInt(exampleBoard[row][i]) === c) return false;
+        let rw = (3 * Math.floor(row / 3)) + Math.floor(i / 3);
+        let cl = (3 * Math.floor(col / 3)) + Math.floor(i % 3);
+        if(parseInt(exampleBoard[rw][cl]) === c) return false;
+    }
+    return true;
+}
+
+const solve = async () => {
+    for(let i = 0; i < 9; i++) {
+        for(let j = 0; j < 9; j++) {
+            if(exampleBoard[i][j] === ".") {
+                for(let c = 1; c <= 9; c++) {
+                    if(await valid(i, j, c)) {
+                        await delay();
+                        exampleBoard[i][j] = c.toString();
+                        document.getElementById(`${i}-${j}`).innerText = c;
+                        
+                        const res = await solve();
+                        if(res) return true;
+                        
+                        await delay();
+                        exampleBoard[i][j] = ".";
+                        document.getElementById(`${i}-${j}`).innerText = "";
+                    }
+                }
+                return false;
+            }
+        }
+    }
+    return true;
+}
+```
